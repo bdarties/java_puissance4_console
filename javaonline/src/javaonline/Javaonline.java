@@ -18,6 +18,7 @@ public class Javaonline {
         // TODO code application logic here
         System.out.println("hello");
         // hello
+        System.out.println("blah");
     }
     
 }
