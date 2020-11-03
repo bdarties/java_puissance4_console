@@ -16,10 +16,12 @@ public class Jeton {
         Couleur = coul;
     }
     
+    // ajout d'un commentaire
     String lireCouleur(){
         return Couleur;
     }
     
+    // notez le vert
     @Override
     public String toString(){
         if("Rouge".equals(Couleur))
