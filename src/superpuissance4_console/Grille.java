@@ -211,12 +211,22 @@ public class Grille {
         return true;
     }
 
-    void tasserGrille(int ligne, int colonne) {
-        for (int i = ligne; i < 6; i++) {
+    void tasserGrille() {
+        for (int i = 0; i < 7; i++) {
+           tasserColonne(i);
+        }
+    }
+    
+    
+       void tasserColonne(int colonne) {
+        for (int i = 0; i < 6; i++) {
             if (i == 5) {
                 Cellules[i][colonne].jetonCourant = null;
             } else {
-                Cellules[i][colonne].jetonCourant = Cellules[i + 1][colonne].jetonCourant;
+                if (Cellules[i][colonne].jetonCourant  == null) {
+                  Cellules[i][colonne].jetonCourant = Cellules[i + 1][colonne].jetonCourant;
+                  Cellules[i + 1][colonne].jetonCourant=null;
+                }
             }
 
         }

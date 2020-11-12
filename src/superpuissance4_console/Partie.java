@@ -16,7 +16,9 @@ public class Partie {
 
     Joueur Listejoueurs[] = new Joueur[2];
     Joueur JoueurCourant;
-    Grille grilleDeJeu  = new Grille();;
+    Grille grilleDeJeu = new Grille();
+
+    ;
 
     
     
@@ -60,11 +62,11 @@ public class Partie {
 
         // On donne des jetons aux joueurs
         for (int i = 0; i < 21; i++) {
-            
+
             Jeton J = new Jeton(Listejoueurs[0].Couleur);
-            
+
             J1.ajouterJeton(J);
-            
+
             J2.ajouterJeton(new Jeton(J2.Couleur));
         }
 
@@ -136,7 +138,7 @@ public class Partie {
             colonne = sc.nextInt() - 1;
             resultatAction = grilleDeJeu.ajouterJetonDansColonne(JoueurCourant, colonne);
         }
-        
+
     }
 
     boolean recup_jeton() {
@@ -159,9 +161,9 @@ public class Partie {
         if (grilleDeJeu.Cellules[ligne][colonne].jetonCourant != null && grilleDeJeu.Cellules[ligne][colonne].lireCouleurDuJeton().equals(JoueurCourant.Couleur)) {
             //G.recupererJeton(ligne, colonne);
             JoueurCourant.ajouterJeton(grilleDeJeu.recupererJeton(ligne, colonne));
-            grilleDeJeu.tasserGrille(ligne, colonne);
+            grilleDeJeu.tasserGrille();
             //JoueurCourant.ajouterJeton(G.Cellules[ligne][colonne].recupererJeton());
-            
+
             return true;
         } else {
             return false;
@@ -169,7 +171,7 @@ public class Partie {
     }
 
     boolean désing_jeton() {
-        if(JoueurCourant.nombreDesintegrateurs==0){
+        if (JoueurCourant.nombreDesintegrateurs == 0) {
             return false;
         }
         int colonne;
@@ -191,7 +193,7 @@ public class Partie {
 
         if (grilleDeJeu.Cellules[ligne][colonne].jetonCourant != null && !grilleDeJeu.Cellules[ligne][colonne].lireCouleurDuJeton().equals(JoueurCourant.Couleur)) {
             grilleDeJeu.supprimerJeton(ligne, colonne);
-            grilleDeJeu.tasserGrille(ligne, colonne);
+            grilleDeJeu.tasserGrille();
             JoueurCourant.utiliserDesintegrateur();
             return true;
         } else {
@@ -214,16 +216,14 @@ public class Partie {
                     System.out.println("Vous avez soit saisi un jeton qui n'est pas le vôtre ou un endroit sans jeton");
                     return false;
                 }
-                return true;
-            //break;
+
+                break;
             case 3:
                 if (!désing_jeton()) {
                     System.out.println("Vous avez soit saisi un jeton qui est le vôtre ou vous n'avez pas de désintégrateur");
                     return false;
                 }
-                return true;
-
-                // break;
+                break;
         }
         return true;
     }
@@ -242,14 +242,12 @@ public class Partie {
 
         } while (grilleDeJeu.etreGagnantePourJoueur(Listejoueurs[0]) != true && grilleDeJeu.etreGagnantePourJoueur(Listejoueurs[1]) != true && grilleDeJeu.etreRemplie() != true);
 
-        if(grilleDeJeu.etreGagnantePourJoueur(Listejoueurs[0]) == true && grilleDeJeu.etreGagnantePourJoueur(Listejoueurs[1]) == true){
+        if (grilleDeJeu.etreGagnantePourJoueur(Listejoueurs[0]) == true && grilleDeJeu.etreGagnantePourJoueur(Listejoueurs[1]) == true) {
             System.out.println("C'est " + JoueurCourant.Nom + " qui a gagné !");
-        }
-        else{
+        } else {
             System.out.println("C'est " + ProchainJoueur(JoueurCourant).Nom + " qui a gagné !");
         }
-        
-        
+
     }
 
 }
